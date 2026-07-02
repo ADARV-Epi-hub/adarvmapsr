@@ -8,10 +8,11 @@
 #' @export
 run_interactive <- function(output_path = "spotmap.html") {
   .line("=")
-  cat("   SpotMap - Interactive Map Builder\n")
-  cat("   We'll guide you through 5 quick steps to build your map.\n")
+  cat("   Welcome to SpotMap  (by ADARV)\n")
+  cat("   Let's turn your data into an interactive map - no coding needed.\n")
+  cat("   Just answer a few quick questions below.\n")
   .line("=")
-  cat("Tip: press Enter to accept the suggested answer in [brackets].\n\n")
+  cat("Tip: not sure about an answer? Press Enter to accept the suggestion in [brackets].\n\n")
 
   # Step 1 -- load file
   df <- .step_load_file()
@@ -64,14 +65,14 @@ run_interactive <- function(output_path = "spotmap.html") {
   output_path <- .step_output_path(output_path)
 
   # Step 7 -- build
-  cat("\nBuilding the map...\n")
+  cat("\nBuilding your map...\n")
   tryCatch({
     spot_map(df, lat_col = lat_col, lon_col = lon_col,
              outcome_col = outcome_col, case_value = case_value,
              all_cases = all_cases,
              output = output_path)
     .line()
-    cat(sprintf("\nOpen this file in your browser:\n   %s\n\n",
+    cat(sprintf("\nAll done! Your map is ready - open this file in your browser:\n   %s\n\n",
                 normalizePath(output_path, mustWork = FALSE)))
     .line()
   }, error = function(e) {

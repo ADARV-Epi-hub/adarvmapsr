@@ -4,13 +4,14 @@
 # Friendly welcome shown when the package is attached, to help first-time
 # (non-coder) users know how to launch the tool.
 .onAttach <- function(libname, pkgname) {
-  v <- tryCatch(as.character(utils::packageVersion(pkgname)), error = function(e) "")
   packageStartupMessage(
-    "SpotMap ", if (nzchar(v)) paste0("v", v, " ") else "",
-    "- interactive spot maps for India (created by ADARV)\n",
+    "SpotMap by ADARV  -  turn your case data into an interactive map of India (no coding needed).\n",
     "\n",
-    "  To build your map, run:\n",
-    "      spotmap()                                  # interactive wizard\n",
-    "      spotmap(\"data.csv\", output = \"map.html\")   # or a direct call"
+    "  Get started - just run:\n",
+    "\n",
+    "      spotmap()\n",
+    "\n",
+    "  You'll be asked to choose your data file, then your map is built for you.\n",
+    "  (Advanced: spotmap(\"data.csv\", output = \"map.html\") builds it directly.)"
   )
 }

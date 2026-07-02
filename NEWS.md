@@ -1,3 +1,12 @@
+# spotmapr 0.1.15
+
+## Improvements
+- Friendlier, plainer wording throughout: the `library(spotmapr)` welcome
+  message, the interactive wizard intro and finish message, and hover
+  tooltips on every toolbar control (Pin Size, Category, Map Type,
+  Labels, Recenter, Download).
+
+
 # spotmapr 0.1.14
 
 ## Bug fixes
