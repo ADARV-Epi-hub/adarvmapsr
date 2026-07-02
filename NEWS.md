@@ -1,3 +1,10 @@
+# spotmapr 0.1.16
+
+## Improvements
+- Reworded the interactive wizard's step questions in plain language
+  (latitude/longitude, case vs control, and which value marks a case).
+
+
 # spotmapr 0.1.15
 
 ## Improvements

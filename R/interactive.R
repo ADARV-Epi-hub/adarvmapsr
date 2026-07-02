@@ -22,26 +22,26 @@ run_interactive <- function(output_path = "spotmap.html") {
   previews <- .build_previews(df)
 
   cat("\n"); .line("-")
-  cat("Step 2 -- Which column holds the LATITUDE?\n")
-  cat("   (Latitude is the North-South number, e.g. 28.61 for Delhi)\n")
+  cat("Step 2 -- Which column has the latitude?\n")
+  cat("   (The north-south number, e.g. 28.61 for Delhi)\n")
   .line("-")
   lat_col <- .ask_choice("Your latitude column", cols,
                           .guess(cols, c("lat", "latitude", "y")), previews)
 
   cat("\n"); .line("-")
-  cat("Step 3 -- Which column holds the LONGITUDE?\n")
-  cat("   (Longitude is the East-West number, e.g. 77.20 for Delhi)\n")
+  cat("Step 3 -- Which column has the longitude?\n")
+  cat("   (The east-west number, e.g. 77.20 for Delhi)\n")
   .line("-")
   lon_col <- .ask_choice("Your longitude column", cols,
                           .guess(cols, c("lon", "long", "lng", "longitude", "x")),
                           previews)
 
   cat("\n"); .line("-")
-  cat("Step 4 -- Which column tells us CASE vs CONTROL?\n")
-  cat("   (If your data only has cases and no control group, pick the\n")
-  cat("    first option to treat every row as a case.)\n")
+  cat("Step 4 -- Which column says whether each row is a case or a control?\n")
+  cat("   (If your data is all cases with no control group, pick the\n")
+  cat("    first option below.)\n")
   .line("-")
-  no_outcome_label <- "(No outcome column - treat all rows as cases)"
+  no_outcome_label <- "My data is all cases (no control group)"
   cols_with_none <- c(no_outcome_label, cols)
   outcome_choice <- .ask_choice("Your outcome column", cols_with_none,
                                  1L + .guess(cols, c("outcome", "status",
@@ -233,7 +233,8 @@ run_interactive <- function(output_path = "spotmap.html") {
   }
 
   cat("\n"); .line("-")
-  cat(sprintf("Step 5 -- Which value in '%s' means a CASE?\n", outcome_col))
+  cat(sprintf("Step 5 -- In '%s', which value marks a case?\n", outcome_col))
+  cat("   (Everything else is treated as a control)\n")
   .line("-")
   cat(sprintf("\nValues in '%s':\n\n", outcome_col))
   max_count <- max(counts)
