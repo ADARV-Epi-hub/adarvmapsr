@@ -1,3 +1,12 @@
+# spotmapr 0.1.17
+
+## Improvements
+- Simplified the `library(spotmapr)` startup message to match the Python
+  package: flush-left, no indentation, and clearer wording
+  ("Interactive SpotMap for India - created by ADARV ... just run
+  `spotmap()`").
+
+
 # spotmapr 0.1.16
 
 ## Improvements
