@@ -152,14 +152,39 @@ spot_map <- function(data,
 
   # 7. Build leaflet map
   # (setView is omitted because fitBounds below overrides it anyway)
+  # CARTO now REQUIRES an API key for its basemap tiles; without one, tiles are
+  # stamped with a repeating "API KEY REQUIRED" watermark. Paste the ADARV
+  # CARTO key below before building/publishing (free key from
+  # https://carto.com/basemaps/apikey). It is embedded in every generated map,
+  # so treat it as public and, where possible, restrict it to your domain(s).
+  carto_key <- "cb1_2lzb_1_0d47abf8d1b6b128f0de7118"
+  carto_attr <- paste0(
+    "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> ",
+    "contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  )
   m <- leaflet::leaflet(
     width = "100%", height = "100%",
     options = leaflet::leafletOptions(zoomSnap = 0.1, zoomDelta = 0.1)
   ) |>
-    # No-labels base so OpenStreetMap place labels can be toggled on/off.
-    leaflet::addProviderTiles("CartoDB.PositronNoLabels") |>
+    # No-labels CARTO Positron base so place labels can be toggled on/off.
+    leaflet::addTiles(
+      urlTemplate = paste0(
+        "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png?key=",
+        carto_key
+      ),
+      attribution = carto_attr,
+      options = leaflet::tileOptions(subdomains = "abcd", maxZoom = 20)
+    ) |>
     # Toggleable place-name labels (rendered by CARTO from OpenStreetMap).
-    leaflet::addProviderTiles("CartoDB.PositronOnlyLabels", group = "Place Labels")
+    leaflet::addTiles(
+      urlTemplate = paste0(
+        "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png?key=",
+        carto_key
+      ),
+      attribution = carto_attr,
+      group = "Place Labels",
+      options = leaflet::tileOptions(subdomains = "abcd", maxZoom = 20)
+    )
 
   # 8. Boundary layers (using addPolygons with sf objects directly)
   if (!is.null(india_sub) && nrow(india_sub) > 0) {

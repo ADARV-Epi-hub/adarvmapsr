@@ -1,3 +1,24 @@
+# spotmapr 0.1.19
+
+## Changes
+- Returned to the CARTO Positron basemap (sharper look, native to zoom 20),
+  now with an API key so CARTO no longer watermarks the tiles. The key is set
+  once via the `carto_key` value in `spot_map()`; it is embedded in every
+  generated map, so treat it as public. (0.1.18 had temporarily switched to
+  Esri's key-free but softer World Light Gray Canvas.)
+
+
+# spotmapr 0.1.18
+
+## Fixes
+- Switched the basemap from CARTO (Positron) to Esri's "World Light Gray
+  Canvas". CARTO now requires an API key for its basemap tiles and stamps a
+  repeating "API KEY REQUIRED" watermark on keyless requests; the Esri tiles
+  are served without a key, so maps render cleanly again. The no-labels base
+  plus toggleable place-name labels behave exactly as before. Esri tiles are
+  native to zoom 16 and upscaled beyond that, so there are no blank tiles.
+
+
 # spotmapr 0.1.17
 
 ## Improvements

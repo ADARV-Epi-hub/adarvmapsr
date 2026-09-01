@@ -73,7 +73,7 @@ sidebar lets you:
 - Pick **cluster** / **case** / **control** colours
 - Resize pins with a slider
 - Show **Cases Only** or **Cases & Controls**
-- Turn **place name labels** (from OpenStreetMap) on or off
+- Turn **place name labels** on or off
 - Download the map as **PNG** or print as **PDF**
 
 ## Custom boundaries
