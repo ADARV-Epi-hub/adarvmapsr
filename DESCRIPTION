@@ -1,4 +1,4 @@
-Package: spotmapr
+Package: adarvmapsr
 Title: Interactive Epidemiological Spot Maps for India
 Version: 0.1.20
 Authors@R: c(
@@ -17,8 +17,8 @@ Description: Build interactive spot maps for epidemiological case-control
     boundaries, and produces interactive 'HTML' maps with dot-density and
     spot-pin display modes.
 License: MIT + file LICENSE
-URL: https://github.com/ADARV-Epi-hub/spotmapr
-BugReports: https://github.com/ADARV-Epi-hub/spotmapr/issues
+URL: https://github.com/ADARV-Epi-hub/adarvmapsr
+BugReports: https://github.com/ADARV-Epi-hub/adarvmapsr/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.1.0)

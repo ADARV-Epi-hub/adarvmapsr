@@ -1,14 +1,14 @@
-#' Run an interactive wizard to build a SpotMap
+#' Run an interactive wizard to build a AdarvMaps
 #'
 #' Guides users through choosing a data file, selecting columns, and generating
 #' the map step by step. Designed for users who prefer a guided experience.
 #'
-#' @param output_path Where to save the HTML map (default: "spotmap.html").
+#' @param output_path Where to save the HTML map (default: "adarvmaps.html").
 #' @return Invisible NULL.
 #' @export
-run_interactive <- function(output_path = "spotmap.html") {
+run_interactive <- function(output_path = "adarvmaps.html") {
   .line("=")
-  cat("   Welcome to SpotMap  (by ADARV)\n")
+  cat("   Welcome to AdarvMaps  (by ADARV)\n")
   cat("   Let's turn your data into an interactive map - no coding needed.\n")
   cat("   Just answer a few quick questions below.\n")
   .line("=")
@@ -208,7 +208,7 @@ run_interactive <- function(output_path = "spotmap.html") {
   }
 }
 
-.step_output_path <- function(default_path = "spotmap.html") {
+.step_output_path <- function(default_path = "adarvmaps.html") {
   cat("\n"); .line("-")
   cat("Step 6 -- Where should we save the map?\n")
   cat("   (Press Enter to accept the default)\n")

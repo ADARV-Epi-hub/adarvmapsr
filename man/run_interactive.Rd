@@ -2,12 +2,12 @@
 % Please edit documentation in R/interactive.R
 \name{run_interactive}
 \alias{run_interactive}
-\title{Run an interactive wizard to build a SpotMap}
+\title{Run an interactive wizard to build a AdarvMaps}
 \usage{
-run_interactive(output_path = "spotmap.html")
+run_interactive(output_path = "adarvmaps.html")
 }
 \arguments{
-\item{output_path}{Where to save the HTML map (default: "spotmap.html").}
+\item{output_path}{Where to save the HTML map (default: "adarvmaps.html").}
 }
 \value{
 Invisible NULL.

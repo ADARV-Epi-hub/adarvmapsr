@@ -5,11 +5,11 @@
 # (non-coder) users know how to launch the tool.
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(
-    "Interactive SpotMap for India - created by ADARV\n",
+    "Interactive AdarvMaps for India - created by ADARV\n",
     "\n",
     "No code required! To build your map, just run:\n",
     "\n",
-    "spotmap()\n",
+    "adarvmaps()\n",
     "\n",
     "You'll be asked to choose your data file, then your map appears."
   )
