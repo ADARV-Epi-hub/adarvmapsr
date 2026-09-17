@@ -15,6 +15,10 @@
 #' @param cluster_color Hex colour for dot-density clusters.
 #' @param case_color Hex colour for case pins.
 #' @param control_color Hex colour for control pins.
+#' @param case_label Word shown for the "case" group on the map (legend, pop-ups,
+#'   menu). Defaults to "Case"; set to any binary variable's value, e.g. "Male".
+#' @param control_label Word shown for the "control" (everything-else) group.
+#'   Defaults to "Control", e.g. "Female".
 #' @param output Path to save the HTML file. If NULL, returns the leaflet widget.
 #' @return A leaflet widget (invisibly if saved to file).
 #' @export
@@ -39,6 +43,8 @@ spot_map <- function(data,
                      cluster_color = "#E85252",
                      case_color = "#D55757",
                      control_color = "#7676E7",
+                     case_label = NULL,
+                     control_label = NULL,
                      output = NULL) {
 
   # If called with no arguments at all, drop into the interactive wizard
@@ -225,10 +231,15 @@ spot_map <- function(data,
     )
   }
 
+  # Words shown for the two groups on the map (legend, pop-ups, menu).
+  # Default to "Case"/"Control"; pass e.g. "Male"/"Female" for any binary var.
+  if (is.null(case_label)) case_label <- "Case"
+  if (is.null(control_label)) control_label <- "Control"
+
   # 10. Marker layers -- dot density (clustered)
   case_coords <- sf::st_coordinates(points_cases)
   case_popups <- paste0(
-    "<b>Type:</b> Case<br>",
+    "<b>Type:</b> ", case_label, "<br>",
     "<b>State:</b> ", points_cases[[state_name_col]], "<br>",
     "<b>District:</b> ", points_cases[[district_name_col]]
   )
@@ -307,7 +318,7 @@ spot_map <- function(data,
   if (nrow(points_controls) > 0) {
     ctrl_coords <- sf::st_coordinates(points_controls)
     ctrl_popups <- paste0(
-      "<b>Type:</b> Control<br>",
+      "<b>Type:</b> ", control_label, "<br>",
       "<b>State:</b> ", points_controls[[state_name_col]], "<br>",
       "<b>District:</b> ", points_controls[[district_name_col]]
     )
@@ -341,10 +352,13 @@ spot_map <- function(data,
     mode = mode,
     cluster_color = cluster_color,
     case_color = case_color,
-    control_color = control_color
+    control_color = control_color,
+    case_label = case_label,
+    control_label = control_label
   )
 
-  sidebar_js <- build_sidebar_js(cluster_color, case_color, control_color)
+  sidebar_js <- build_sidebar_js(cluster_color, case_color, control_color,
+                                 case_label, control_label)
 
   # Full-page styling so the map fills the browser window
   fullpage_css <- htmltools::tags$style(htmltools::HTML("

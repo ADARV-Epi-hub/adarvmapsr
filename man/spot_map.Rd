@@ -19,6 +19,8 @@ spot_map(
   cluster_color = "#E85252",
   case_color = "#D55757",
   control_color = "#7676E7",
+  case_label = NULL,
+  control_label = NULL,
   output = NULL
 )
 
@@ -54,6 +56,12 @@ or case-only datasets that don't have a control group. Defaults to \code{FALSE}.
 \item{case_color}{Hex colour for case pins.}
 
 \item{control_color}{Hex colour for control pins.}
+
+\item{case_label}{Word shown for the "case" group on the map (legend, pop-ups,
+menu). Defaults to "Case"; set to any binary variable's value, e.g. "Male".}
+
+\item{control_label}{Word shown for the "control" (everything-else) group.
+Defaults to "Control", e.g. "Female".}
 
 \item{output}{Path to save the HTML file. If NULL, returns the leaflet widget.}
 }

@@ -1,7 +1,11 @@
 #' Build the top toolbar HTML/CSS for the SpotMap (ADARV attached-bar layout)
 #' @keywords internal
 build_sidebar_html <- function(n_cases, n_controls, mode,
-                                cluster_color, case_color, control_color) {
+                                cluster_color, case_color, control_color,
+                                case_label = "Case", control_label = "Control") {
+  # User-supplied group names — escape for the HTML spots (legend, menu).
+  case_label <- htmltools::htmlEscape(case_label)
+  control_label <- htmltools::htmlEscape(control_label)
   css <- '
 <style>
 :root {
@@ -134,11 +138,11 @@ build_sidebar_html <- function(n_cases, n_controls, mode,
     <h4>Legend</h4>
     <div class="legend-item" id="legend-case-item">
         <span class="legend-icon" id="legend-icon-case" style="background-color:', case_color, ';"></span>
-        <span>Case</span>
+        <span>', case_label, '</span>
     </div>
     <div class="legend-item" id="legend-control-item" style="display:none;">
         <span class="legend-icon" id="legend-icon-control" style="background-color:', control_color, ';"></span>
-        <span>Control</span>
+        <span>', control_label, '</span>
     </div>
 </div>
 
@@ -161,14 +165,14 @@ build_sidebar_html <- function(n_cases, n_controls, mode,
   <div class="sm-group">
     <span class="sm-chip-label"><span class="dot"></span>Category</span>
     <div class="sm-dropdown" id="dd-category">
-      <button class="sm-pill" id="categoryBtn" title="Show only cases, or cases and controls together (and pick their colours)"><span id="categoryLabel">Only Cases</span> <span class="caret">&#9660;</span></button>
+      <button class="sm-pill" id="categoryBtn" title="Show only one group, or both groups together (and pick their colours)"><span id="categoryLabel">Only ', case_label, '</span> <span class="caret">&#9660;</span></button>
       <div class="sm-menu" id="categoryMenu">
         <div class="sm-menu-title">Spot Map Filter</div>
-        <div class="sm-menu-item" data-filter="cases"><span>Only Cases</span><span class="check">&#10003;</span></div>
-        <div class="sm-menu-item" data-filter="both"><span>Case &amp; Control</span><span class="check">&#10003;</span></div>
+        <div class="sm-menu-item" data-filter="cases"><span>Only ', case_label, '</span><span class="check">&#10003;</span></div>
+        <div class="sm-menu-item" data-filter="both"><span>', case_label, ' &amp; ', control_label, '</span><span class="check">&#10003;</span></div>
         <div class="sm-menu-title">Colours</div>
-        <div class="sm-color-row" id="row-case"><span>Case</span><input type="color" id="caseColorPicker" value="', case_color, '"></div>
-        <div class="sm-color-row" id="row-control"><span>Control</span><input type="color" id="controlColorPicker" value="', control_color, '"></div>
+        <div class="sm-color-row" id="row-case"><span>', case_label, '</span><input type="color" id="caseColorPicker" value="', case_color, '"></div>
+        <div class="sm-color-row" id="row-control"><span>', control_label, '</span><input type="color" id="controlColorPicker" value="', control_color, '"></div>
         <div class="sm-color-row" id="row-cluster"><span>Cluster</span><input type="color" id="clusterCustomColor" value="', cluster_color, '"></div>
       </div>
     </div>
@@ -213,7 +217,11 @@ build_sidebar_html <- function(n_cases, n_controls, mode,
 
 #' Build the toolbar JavaScript for layer toggling
 #' @keywords internal
-build_sidebar_js <- function(cluster_color, case_color, control_color) {
+build_sidebar_js <- function(cluster_color, case_color, control_color,
+                             case_label = "Case", control_label = "Control") {
+  # encodeString(quote='"') yields a safely-escaped JS string literal.
+  case_label_js <- encodeString(case_label, quote = "\"")
+  control_label_js <- encodeString(control_label, quote = "\"")
   paste0('
 function(el, x) {
   try {
@@ -224,6 +232,9 @@ function(el, x) {
     window.controlColor = "', control_color, '";
     window.clusterBaseColor = "', cluster_color, '";
     window.pinScale = 0.75;
+
+    var caseLabel = ', case_label_js, ';
+    var controlLabel = ', control_label_js, ';
 
     var state = { mode: "dots", filter: "cases", pinPct: 75 };
     function pinLabel(pct) { return pct === 75 ? "75% (Recommended)" : (pct + "%"); }
@@ -292,7 +303,7 @@ function(el, x) {
       document.querySelectorAll("#categoryMenu .sm-menu-item").forEach(function(it) {
         it.classList.toggle("active", it.getAttribute("data-filter") === state.filter);
       });
-      byId("categoryLabel").textContent = state.filter === "both" ? "Case & Control" : "Only Cases";
+      byId("categoryLabel").textContent = state.filter === "both" ? (caseLabel + " & " + controlLabel) : ("Only " + caseLabel);
 
       var dotsItem = document.querySelector("#maptypeMenu .sm-menu-item[data-mode=dots]");
       if (dotsItem) dotsItem.classList.toggle("disabled", state.filter === "both");

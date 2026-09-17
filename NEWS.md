@@ -1,3 +1,14 @@
+# spotmapr 0.1.20
+
+## New features
+- Custom group labels: `spot_map()` gains `case_label` / `control_label` (e.g.
+  "Male" / "Female"), so the outcome column can split the data by any binary
+  variable — sex, vital status, test result — and the map's legend, pop-ups,
+  and category menu use your names instead of always "Case" / "Control". The
+  interactive wizard asks for the two names and suggests them from the data.
+  Defaults remain "Case" / "Control", so existing maps are unchanged.
+
+
 # spotmapr 0.1.19
 
 ## Changes
