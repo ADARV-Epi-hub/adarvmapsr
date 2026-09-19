@@ -37,45 +37,41 @@ run_interactive <- function(output_path = "adarvmaps.html") {
                           previews)
 
   cat("\n"); .line("-")
-  cat("Step 4 -- Which column says whether each row is a case or a control?\n")
-  cat("   (If your data is all cases with no control group, pick the\n")
-  cat("    first option below.)\n")
+  cat("Step 4 -- Which column is your grouping variable?\n")
+  cat("   (the column that splits the data into two groups -- e.g.\n")
+  cat("    case/control, male/female, dead/alive, positive/negative)\n")
+  cat("   If you don't want any split, pick the first option below.\n")
   .line("-")
-  no_outcome_label <- "My data is all cases (no control group)"
+  no_outcome_label <- "No grouping -- show all rows the same"
   cols_with_none <- c(no_outcome_label, cols)
-  outcome_choice <- .ask_choice("Your outcome column", cols_with_none,
+  outcome_choice <- .ask_choice("Your grouping variable", cols_with_none,
                                  1L + .guess(cols, c("outcome", "status",
                                                      "case_control", "class",
                                                      "result")),
-                                 c("All rows treated as cases",
+                                 c("All rows shown the same",
                                    previews))
 
   all_cases <- identical(outcome_choice, no_outcome_label)
 
+  # Group labels are taken automatically from the data values (in spot_map()).
   if (all_cases) {
     outcome_col <- NULL
     case_value <- NULL
-    case_label <- NULL
-    control_label <- NULL
-    cat(sprintf("\nTreating all %d rows as cases (no controls).\n", nrow(df)))
+    cat(sprintf("\nNo grouping -- showing all %d rows the same.\n", nrow(df)))
   } else {
     outcome_col <- outcome_choice
     case_value <- .step_pick_case_value(df, outcome_col)
-    labs <- .step_pick_labels(df, outcome_col, case_value)
-    case_label <- labs$case
-    control_label <- labs$control
   }
 
-  # Step 7 -- pick output path (allow user to override the default)
+  # Step 6 -- pick output path (allow user to override the default)
   output_path <- .step_output_path(output_path)
 
-  # Step 8 -- build
+  # Step 7 -- build
   cat("\nBuilding your map...\n")
   tryCatch({
     spot_map(df, lat_col = lat_col, lon_col = lon_col,
              outcome_col = outcome_col, case_value = case_value,
              all_cases = all_cases,
-             case_label = case_label, control_label = control_label,
              output = output_path)
     .line()
     cat(sprintf("\nAll done! Your map is ready - open this file in your browser:\n   %s\n\n",
@@ -91,32 +87,6 @@ run_interactive <- function(output_path = "adarvmaps.html") {
 # --- Helpers -----------------------------------------------------------------
 
 .line <- function(char = "=", n = 55L) cat(strrep(char, n), "\n")
-
-# Step 6 -- what the two groups should be called on the map. Suggests names
-# from the data (e.g. case value "male" -> "Male", the only other value ->
-# its own name), so the legend / pop-ups / menu read naturally.
-.step_pick_labels <- function(df, outcome_col, case_value) {
-  cap <- function(s) {
-    s <- trimws(s)
-    if (nchar(s) == 0) return(s)
-    paste0(toupper(substring(s, 1, 1)), substring(s, 2))
-  }
-  vals <- unique(stats::na.omit(trimws(as.character(df[[outcome_col]]))))
-  others <- vals[vals != trimws(as.character(case_value))]
-  default_case <- cap(as.character(case_value))
-  if (nchar(default_case) == 0) default_case <- "Case"
-  default_control <- if (length(others) == 1L) cap(others[1]) else "Control"
-
-  cat("\n"); .line("-")
-  cat("Step 6 -- What should the two groups be called on the map?\n")
-  cat("   (Shown in the legend, the pop-ups, and the menu.)\n")
-  cat("   Press Enter to accept the suggested names.\n")
-  .line("-")
-  case_label <- .ask("Name for the CASE group", default = default_case)
-  control_label <- .ask("Name for the OTHER (control) group",
-                        default = default_control)
-  list(case = case_label, control = control_label)
-}
 
 .ask <- function(prompt, default = NULL) {
   suffix <- if (!is.null(default)) paste0(" [", default, "]") else ""
@@ -265,8 +235,9 @@ run_interactive <- function(output_path = "adarvmaps.html") {
   }
 
   cat("\n"); .line("-")
-  cat(sprintf("Step 5 -- In '%s', which value marks a case?\n", outcome_col))
-  cat("   (Everything else is treated as a control)\n")
+  cat(sprintf("Step 5 -- In '%s', which value is the main group?\n", outcome_col))
+  cat("   (This group is highlighted / clustered; everything else is the\n")
+  cat("    other group. Both keep their own names from your data.)\n")
   .line("-")
   cat(sprintf("\nValues in '%s':\n\n", outcome_col))
   max_count <- max(counts)
@@ -286,6 +257,6 @@ run_interactive <- function(output_path = "adarvmaps.html") {
     }
   }
 
-  cat("Which value should be treated as CASE?\n")
-  .ask_choice("Case value", values, default_idx)
+  cat("Which value is the main group? (everything else becomes the other group)\n")
+  .ask_choice("Main group value", values, default_idx)
 }

@@ -15,10 +15,12 @@
 #' @param cluster_color Hex colour for dot-density clusters.
 #' @param case_color Hex colour for case pins.
 #' @param control_color Hex colour for control pins.
-#' @param case_label Word shown for the "case" group on the map (legend, pop-ups,
-#'   menu). Defaults to "Case"; set to any binary variable's value, e.g. "Male".
-#' @param control_label Word shown for the "control" (everything-else) group.
-#'   Defaults to "Control", e.g. "Female".
+#' @param case_label Word shown for the main group on the map (legend, pop-ups,
+#'   menu). Defaults to the actual value from the grouping column (e.g. "Dead").
+#'   Pass a string only to override.
+#' @param control_label Word shown for the other group. Defaults to the other
+#'   value in the grouping column when there is exactly one (e.g. "Alive"),
+#'   otherwise "Others". Pass a string only to override.
 #' @param output Path to save the HTML file. If NULL, returns the leaflet widget.
 #' @return A leaflet widget (invisibly if saved to file).
 #' @export
@@ -231,10 +233,26 @@ spot_map <- function(data,
     )
   }
 
-  # Words shown for the two groups on the map (legend, pop-ups, menu).
-  # Default to "Case"/"Control"; pass e.g. "Male"/"Female" for any binary var.
-  if (is.null(case_label)) case_label <- "Case"
-  if (is.null(control_label)) control_label <- "Control"
+  # Group labels: default to the actual values in the grouping column (e.g.
+  # "Dead" / "Alive"), so the map shows the data's own words. Explicit
+  # case_label / control_label override this.
+  if (isTRUE(all_cases)) {
+    if (is.null(case_label)) case_label <- "Case"
+    if (is.null(control_label)) control_label <- "Control"
+  } else {
+    .orig <- trimws(as.character(df[[outcome_col]]))
+    .orig <- .orig[!is.na(.orig) & .orig != ""]
+    .onorm <- tolower(.orig)
+    .cv <- tolower(trimws(as.character(case_value)))
+    .case_vals <- unique(.orig[.onorm == .cv])
+    .other_vals <- unique(.orig[.onorm != .cv])
+    if (is.null(case_label)) {
+      case_label <- if (length(.case_vals) > 0) .case_vals[1] else as.character(case_value)
+    }
+    if (is.null(control_label)) {
+      control_label <- if (length(.other_vals) == 1) .other_vals[1] else "Others"
+    }
+  }
 
   # 10. Marker layers -- dot density (clustered)
   case_coords <- sf::st_coordinates(points_cases)

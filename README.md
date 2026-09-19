@@ -79,11 +79,12 @@ adarvmapsr asks **five** questions. Each shows its own best guess in **[brackets
 2. **Which column has the latitude?** The north–south number (e.g. `28.61` for Delhi).
 3. **Which column has the longitude?** The east–west number (e.g. `77.20` for Delhi). If the
    points later look misplaced, latitude and longitude may be swapped.
-4. **Which column has the outcome?** A variable that splits the data into two groups — case /
-   control, male / female, dead / alive, positive / negative. It then asks what to **call**
-   the two groups. Choose *My data is all cases (no control group)* if there's no split.
-5. **Which value marks the outcome?** Tell it which value is the "case"; everything else is
-   the other group.
+4. **Which column is your grouping variable?** The column that splits the data into two
+   groups — case / control, male / female, dead / alive, positive / negative. The map uses
+   the **actual values from your data** as the group names automatically. Choose *No
+   grouping — show all rows the same* if there's no split.
+5. **Which value is the main group?** Tell it which value is the main (highlighted) group;
+   everything else becomes the other group, shown with its own name.
 
 ### Step 4 — Get your map
 adarvmapsr saves your map as an HTML file and tells you where it is. Open it in any browser

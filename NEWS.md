@@ -1,12 +1,14 @@
 # adarvmapsr 0.1.20
 
 ## New features
-- Custom group labels: `spot_map()` gains `case_label` / `control_label` (e.g.
-  "Male" / "Female"), so the outcome column can split the data by any binary
-  variable — sex, vital status, test result — and the map's legend, pop-ups,
-  and category menu use your names instead of always "Case" / "Control". The
-  interactive wizard asks for the two names and suggests them from the data.
-  Defaults remain "Case" / "Control", so existing maps are unchanged.
+- Any binary **grouping variable**: the grouping column can now split the data
+  by sex, vital status, test result, etc. — not just case/control. The map's
+  legend, pop-ups, and category menu automatically use the **actual values from
+  your data** (e.g. "Dead" / "Alive") as the group names, so the wizard no
+  longer asks you to name the groups. `spot_map()` still accepts optional
+  `case_label` / `control_label` to override the names.
+- The interactive wizard now calls this the "grouping variable" (not
+  "outcome"), and Step 5 asks which value is the **main group**.
 
 
 # adarvmapsr 0.1.19

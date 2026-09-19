@@ -57,11 +57,13 @@ or case-only datasets that don't have a control group. Defaults to \code{FALSE}.
 
 \item{control_color}{Hex colour for control pins.}
 
-\item{case_label}{Word shown for the "case" group on the map (legend, pop-ups,
-menu). Defaults to "Case"; set to any binary variable's value, e.g. "Male".}
+\item{case_label}{Word shown for the main group on the map (legend, pop-ups,
+menu). Defaults to the actual value from the grouping column (e.g. "Dead").
+Pass a string only to override.}
 
-\item{control_label}{Word shown for the "control" (everything-else) group.
-Defaults to "Control", e.g. "Female".}
+\item{control_label}{Word shown for the other group. Defaults to the other
+value in the grouping column when there is exactly one (e.g. "Alive"),
+otherwise "Others". Pass a string only to override.}
 
 \item{output}{Path to save the HTML file. If NULL, returns the leaflet widget.}
 }
