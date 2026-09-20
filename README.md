@@ -88,7 +88,8 @@ adarvmapsr asks **five** questions. Each shows its own best guess in **[brackets
 
 ### Step 4 — Get your map
 adarvmapsr saves your map as an HTML file and tells you where it is. Open it in any browser
-— it works on its own. The sidebar lets you switch between **Spot Map** and **Dot Density**,
+— it's a single self-contained file (an internet connection is needed to load the
+background map tiles). The sidebar lets you switch between **Spot Map** and **Dot Density**,
 show one group or both, change colours and pin sizes, toggle place-name labels, and export
 to **PNG** or **PDF**.
 

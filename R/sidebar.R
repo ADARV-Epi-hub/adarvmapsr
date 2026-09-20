@@ -207,8 +207,10 @@ build_sidebar_html <- function(n_cases, n_controls, mode,
   </div>
 </div>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet-simple-map-screenshoter/dist/leaflet-simple-map-screenshoter.css" />
-<script src="https://unpkg.com/leaflet-simple-map-screenshoter"></script>
+<!-- Pinned: an unversioned CDN URL would silently pick up upstream breaking
+     changes in every map already generated. (The upstream package ships no
+     stylesheet, so there is no CSS link here.) -->
+<script src="https://unpkg.com/leaflet-simple-map-screenshoter@0.5.0/dist/leaflet-simple-map-screenshoter.js"></script>
 ')
 
   htmltools::HTML(paste0(css, html))
