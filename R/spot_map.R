@@ -50,7 +50,7 @@ spot_map <- function(data,
                      output = NULL) {
 
   # If called with no arguments at all, drop into the interactive wizard
-  # (Python equivalent: `python -m adarvmaps` runs the prompt-based flow.)
+  # (Python equivalent: `python -m adarvmap` runs the prompt-based flow.)
   if (missing(data)) {
     out <- if (is.null(output)) .default_output() else output
     return(invisible(run_interactive(output_path = out)))
@@ -109,17 +109,17 @@ spot_map <- function(data,
   # Triggered when the user passes all_cases = TRUE, OR when the user
   # didn't pass an outcome_col and no plausible one can be auto-detected.
   if (isTRUE(all_cases)) {
-    outcome_col <- ".adarvmapsr_outcome_norm"
+    outcome_col <- ".adarvmapr_outcome_norm"
     case_value <- "case"
-    df[[".adarvmapsr_outcome_norm"]] <- "case"
+    df[[".adarvmapr_outcome_norm"]] <- "case"
     message("Cases-only mode: treating all ", nrow(df), " rows as cases.")
   } else {
     oc <- detect_outcome(df, outcome_col, case_value)
     outcome_col <- oc$outcome_col
     case_value <- oc$case_value
 
-    df[[".adarvmapsr_outcome_norm"]] <- tolower(trimws(as.character(df[[outcome_col]])))
-    df[[".adarvmapsr_outcome_norm"]][df[[".adarvmapsr_outcome_norm"]] %in% c("na", "nan")] <- NA
+    df[[".adarvmapr_outcome_norm"]] <- tolower(trimws(as.character(df[[outcome_col]])))
+    df[[".adarvmapr_outcome_norm"]][df[[".adarvmapr_outcome_norm"]] %in% c("na", "nan")] <- NA
   }
 
   # 3. Load boundaries
@@ -134,7 +134,7 @@ spot_map <- function(data,
                                  state_name_col, district_name_col)
 
   # 5. Split cases / controls
-  is_case <- points_joined[[".adarvmapsr_outcome_norm"]] == case_value
+  is_case <- points_joined[[".adarvmapr_outcome_norm"]] == case_value
   is_case[is.na(is_case)] <- FALSE
   points_cases <- points_joined[is_case, ]
   points_controls <- points_joined[!is_case, ]
@@ -405,7 +405,7 @@ spot_map <- function(data,
 
 #' @rdname spot_map
 #' @export
-adarvmaps <- function(...) spot_map(...)
+adarvmap <- function(...) spot_map(...)
 
 
 #' Internal: save the widget or return it

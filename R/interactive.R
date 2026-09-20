@@ -1,4 +1,4 @@
-#' Run an interactive wizard to build a AdarvMaps
+#' Run an interactive wizard to build a AdarvMap
 #'
 #' Guides users through choosing a data file, selecting columns, and generating
 #' the map step by step. Designed for users who prefer a guided experience.
@@ -9,7 +9,7 @@
 #' @export
 run_interactive <- function(output_path = .default_output()) {
   .line("=")
-  cat("   Welcome to AdarvMaps  (by ADARV)\n")
+  cat("   Welcome to AdarvMap  (by ADARV)\n")
   cat("   Let's turn your data into an interactive map - no coding needed.\n")
   cat("   Just answer a few quick questions below.\n")
   .line("=")

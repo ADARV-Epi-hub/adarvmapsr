@@ -6,5 +6,5 @@ inst/doc
 *.tar.gz
 
 # Accidental saveWidget() output (selfcontained = FALSE creates these)
-adarvmaps.html
+adarvmap.html
 *_files/

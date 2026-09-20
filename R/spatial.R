@@ -9,9 +9,9 @@
 #' @keywords internal
 load_boundaries <- function(state_shp = NULL, district_shp = NULL) {
   state_path <- state_shp %||%
-    system.file("extdata", "state_boundary_lite.fgb", package = "adarvmapsr")
+    system.file("extdata", "state_boundary_lite.fgb", package = "adarvmapr")
   district_path <- district_shp %||%
-    system.file("extdata", "district_boundary_lite.fgb", package = "adarvmapsr")
+    system.file("extdata", "district_boundary_lite.fgb", package = "adarvmapr")
 
   states <- .ensure_wgs84(sf::st_read(state_path, quiet = TRUE))
   districts <- .ensure_wgs84(sf::st_read(district_path, quiet = TRUE))

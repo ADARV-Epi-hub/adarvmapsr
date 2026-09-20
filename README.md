@@ -1,16 +1,16 @@
-# adarvmapsr
+# adarvmapr
 
 **Interactive epidemiological spot maps for India — no GIS software, no shapefiles, no setup.**
 
 [![R >= 4.1](https://img.shields.io/badge/R-%3E%3D%204.1.0-blue.svg)](https://www.r-project.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ADARV-Epi-hub/adarvmapsr/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ADARV-Epi-hub/adarvmapr/blob/main/LICENSE)
 [![Install from GitHub](https://img.shields.io/badge/install-GitHub-black.svg)](#guide-for-developers)
 
-`adarvmapsr` turns a spreadsheet of latitude and longitude from the field into a polished,
+`adarvmapr` turns a spreadsheet of latitude and longitude from the field into a polished,
 interactive HTML map. You can open the map in any browser, make edits, and download it as a
 **PNG** image or **PDF**. India's state and district boundaries are already built in, so you
 don't have to search for shapefiles. It is the R companion to the Python package
-[`adarvmaps`](https://github.com/ADARV-Epi-hub/adarvmaps).
+[`adarvmap`](https://github.com/ADARV-Epi-hub/adarvmap).
 
 - 📍 **Spot maps** — show the location of individual people or events
 - 🔴 **Dot-density maps** — aggregate nearby points to show clustering of cases
@@ -20,7 +20,7 @@ don't have to search for shapefiles. It is the R companion to the Python package
 
 ---
 
-## What will adarvmapsr do?
+## What will adarvmapr do?
 
 It turns your spreadsheet into an interactive map — placing every row as a **dot** at its
 location, drawing the correct **state and district boundaries**, and colouring the groups
@@ -59,23 +59,23 @@ to run R without installing anything is **Posit Cloud** — free RStudio in your
 Go to **[posit.cloud](https://posit.cloud)**, sign up free, and click
 **New Project → New RStudio Project**. The box where you type is called the *Console*.
 
-### Step 2 — Start adarvmapsr
+### Step 2 — Start adarvmapr
 Paste these three lines into the Console and press **Enter**:
 ```r
 install.packages("remotes")
-remotes::install_github("ADARV-Epi-hub/adarvmapsr")
-library(adarvmapsr); adarvmaps()
+remotes::install_github("ADARV-Epi-hub/adarvmapr")
+library(adarvmapr); adarvmap()
 ```
 The first two lines install the package (a couple of minutes the first time — that's
 normal); the third starts the guided wizard.
 
 ### Step 3 — Answer the questions
-adarvmapsr asks **five** questions. Each shows its own best guess in **[brackets]** — press
+adarvmapr asks **five** questions. Each shows its own best guess in **[brackets]** — press
 **Enter** to accept it, or type the number of the correct choice.
 
 1. **Where is your data file?** In Posit Cloud, first upload your spreadsheet with the
    *Upload* button in the Files panel (bottom-right), then type its name (CSV, Excel
-   `.xlsx` / `.xls`, or TSV). adarvmapsr prints a quick summary so you can confirm it loaded.
+   `.xlsx` / `.xls`, or TSV). adarvmapr prints a quick summary so you can confirm it loaded.
 2. **Which column has the latitude?** The north–south number (e.g. `28.61` for Delhi).
 3. **Which column has the longitude?** The east–west number (e.g. `77.20` for Delhi). If the
    points later look misplaced, latitude and longitude may be swapped.
@@ -87,7 +87,7 @@ adarvmapsr asks **five** questions. Each shows its own best guess in **[brackets
    everything else becomes the other group, shown with its own name.
 
 ### Step 4 — Get your map
-adarvmapsr saves your map as an HTML file and tells you where it is. Open it in any browser
+adarvmapr saves your map as an HTML file and tells you where it is. Open it in any browser
 — it's a single self-contained file (an internet connection is needed to load the
 background map tiles). The sidebar lets you switch between **Spot Map** and **Dot Density**,
 show one group or both, change colours and pin sizes, toggle place-name labels, and export
@@ -100,16 +100,16 @@ to **PNG** or **PDF**.
 ### Install
 ```r
 # install.packages("remotes")
-remotes::install_github("ADARV-Epi-hub/adarvmapsr")
+remotes::install_github("ADARV-Epi-hub/adarvmapr")
 ```
 R >= 4.1. On Linux, `sf` needs `libgdal-dev`, `libproj-dev`, and `libgeos-dev`
 ([sf guide](https://r-spatial.github.io/sf/#installing)); Windows and macOS install a binary.
 
 ### Usage
 ```r
-library(adarvmapsr)
+library(adarvmapr)
 
-adarvmaps()                                      # interactive wizard
+adarvmap()                                      # interactive wizard
 spot_map("my_cases.csv", output = "map.html")    # direct call, auto-detected columns
 ```
 
@@ -155,7 +155,7 @@ and resize markers, toggle **place-name labels**, and export to **PNG / PDF**.
 
 ## ADARV Team
 
-adarvmapsr is developed by the **ADARV** team: **Muniraj Mallesan** (maintainer),
+adarvmapr is developed by the **ADARV** team: **Muniraj Mallesan** (maintainer),
 **Dr. Sharan Murali** (team lead), Manikandan K, Shanmuga Sundharam, Yogita Chaudhary,
 Barath U, Balaji S, and Deepana R.
 

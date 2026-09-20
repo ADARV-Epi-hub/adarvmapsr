@@ -1,4 +1,4 @@
-#' Build the top toolbar HTML/CSS for the AdarvMaps (ADARV attached-bar layout)
+#' Build the top toolbar HTML/CSS for the AdarvMap (ADARV attached-bar layout)
 #' @keywords internal
 build_sidebar_html <- function(n_cases, n_controls, mode,
                                 cluster_color, case_color, control_color,
@@ -454,7 +454,7 @@ function(el, x) {
         simpleMapScreenshoter.takeScreen("blob", { caption: function() { return ""; } })
           .then(function(blob) {
             var link = document.createElement("a");
-            link.download = "adarvmaps.png";
+            link.download = "adarvmap.png";
             link.href = URL.createObjectURL(blob);
             link.click();
           })
@@ -467,11 +467,11 @@ function(el, x) {
     applyLayerLogic();
     redrawPins();
   } catch(err) {
-    console.error("AdarvMaps toolbar error:", err);
+    console.error("AdarvMap toolbar error:", err);
     try {
       var banner = document.createElement("div");
       banner.style.cssText = "position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#fee;color:#900;padding:8px 14px;border:1px solid #c66;border-radius:6px;z-index:99999;font-family:sans-serif;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,0.15);";
-      banner.textContent = "AdarvMaps UI error: " + (err && err.message ? err.message : err) + " (see browser console for details)";
+      banner.textContent = "AdarvMap UI error: " + (err && err.message ? err.message : err) + " (see browser console for details)";
       document.body.appendChild(banner);
       setTimeout(function() { banner.style.display = "none"; }, 8000);
     } catch(_) {}

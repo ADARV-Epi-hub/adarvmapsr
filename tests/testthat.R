@@ -1,4 +1,4 @@
 library(testthat)
-library(adarvmapsr)
+library(adarvmapr)
 
-test_check("adarvmapsr")
+test_check("adarvmapr")

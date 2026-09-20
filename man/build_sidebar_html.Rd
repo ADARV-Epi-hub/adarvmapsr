@@ -2,7 +2,7 @@
 % Please edit documentation in R/sidebar.R
 \name{build_sidebar_html}
 \alias{build_sidebar_html}
-\title{Build the sidebar HTML/CSS/JS for the AdarvMaps}
+\title{Build the sidebar HTML/CSS/JS for the AdarvMap}
 \usage{
 build_sidebar_html(
   n_cases,
@@ -14,6 +14,6 @@ build_sidebar_html(
 )
 }
 \description{
-Build the sidebar HTML/CSS/JS for the AdarvMaps
+Build the sidebar HTML/CSS/JS for the AdarvMap
 }
 \keyword{internal}

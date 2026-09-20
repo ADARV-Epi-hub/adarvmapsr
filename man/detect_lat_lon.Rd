@@ -15,7 +15,7 @@ detect_lat_lon(df, lat_col = NULL, lon_col = NULL)
 }
 \value{
 A named list with elements \code{lat} (column name), \code{lon} (column
-name), and \code{df} (the data.frame; may have new \code{.adarvmapsr_auto_lat}/\code{.adarvmapsr_auto_lon}
+name), and \code{df} (the data.frame; may have new \code{.adarvmapr_auto_lat}/\code{.adarvmapr_auto_lon}
 columns appended if a combined column was split).
 }
 \description{

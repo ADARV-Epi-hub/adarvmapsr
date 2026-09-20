@@ -2,7 +2,7 @@
 % Please edit documentation in R/interactive.R
 \name{run_interactive}
 \alias{run_interactive}
-\title{Run an interactive wizard to build a AdarvMaps}
+\title{Run an interactive wizard to build a AdarvMap}
 \usage{
 run_interactive(output_path = .default_output())
 }
