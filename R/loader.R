@@ -34,6 +34,25 @@ load_data <- function(path) {
                           "target", "casecontrol")
 .CASE_VALUES <- c("case", "cases", "1", "yes", "true", "positive", "present")
 
+# Pick the column best matching `candidates`: an exact name match wins first
+# (so 'lat' beats a column that merely contains 'y'); only then a substring
+# match, and only for aliases of length >= 3 so single-letter aliases like
+# 'x'/'y' match exactly rather than any column containing that letter.
+.match_col <- function(cols, candidates) {
+  lowers <- trimws(tolower(cols))
+  for (n in candidates) {
+    hit <- which(lowers == n)
+    if (length(hit) > 0) return(cols[hit[1]])
+  }
+  long_names <- candidates[nchar(candidates) >= 3]
+  for (i in seq_along(lowers)) {
+    if (any(vapply(long_names, function(n) grepl(n, lowers[i], fixed = TRUE),
+                   logical(1))))
+      return(cols[i])
+  }
+  NULL
+}
+
 .is_float_col <- function(df, col, n = 5L) {
   vals <- head(trimws(as.character(stats::na.omit(df[[col]]))), n)
   # Accept plain decimals AND scientific notation (e.g. 1.1e1, -2.5E-3)
@@ -95,18 +114,10 @@ detect_lat_lon <- function(df, lat_col = NULL, lon_col = NULL) {
 
   # Separate numeric columns by name
   numeric_cols <- cols[vapply(cols, function(c) .is_float_col(df, c), logical(1))]
-  found_lat <- NULL
-  found_lon <- NULL
+  found_lat <- .match_col(numeric_cols, .LAT_NAMES)
+  found_lon <- .match_col(numeric_cols, .LON_NAMES)
 
-  for (c in numeric_cols) {
-    cl <- tolower(c)
-    if (any(vapply(.LAT_NAMES, function(n) grepl(n, cl, fixed = TRUE), logical(1))))
-      found_lat <- c
-    if (any(vapply(.LON_NAMES, function(n) grepl(n, cl, fixed = TRUE), logical(1))))
-      found_lon <- c
-  }
-
-  if (!is.null(found_lat) && !is.null(found_lon))
+  if (!is.null(found_lat) && !is.null(found_lon) && found_lat != found_lon)
     return(list(lat = found_lat, lon = found_lon, df = df))
 
   if (length(numeric_cols) == 2)

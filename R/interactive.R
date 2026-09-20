@@ -132,9 +132,17 @@ run_interactive <- function(output_path = .default_output()) {
 }
 
 .guess <- function(columns, candidates) {
-  for (i in seq_along(columns)) {
-    lc <- tolower(columns[i])
-    if (any(vapply(candidates, function(n) grepl(n, lc, fixed = TRUE),
+  lowers <- trimws(tolower(columns))
+  # 1. exact match wins (a column named 'lat' beats one that contains 'y')
+  for (n in candidates) {
+    hit <- which(lowers == n)
+    if (length(hit) > 0) return(hit[1])
+  }
+  # 2. substring match, only for aliases of length >= 3, so single-letter
+  #    aliases like 'x'/'y' don't match unrelated columns
+  long_names <- candidates[nchar(candidates) >= 3]
+  for (i in seq_along(lowers)) {
+    if (any(vapply(long_names, function(n) grepl(n, lowers[i], fixed = TRUE),
                    logical(1))))
       return(i)
   }
