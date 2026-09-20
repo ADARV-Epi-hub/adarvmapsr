@@ -3,10 +3,11 @@
 #' Guides users through choosing a data file, selecting columns, and generating
 #' the map step by step. Designed for users who prefer a guided experience.
 #'
-#' @param output_path Where to save the HTML map (default: "adarvmaps.html").
+#' @param output_path Where to save the HTML map. When omitted, defaults to a
+#'   dated file like "adarvmap_200926.html".
 #' @return Invisible NULL.
 #' @export
-run_interactive <- function(output_path = "adarvmaps.html") {
+run_interactive <- function(output_path = .default_output()) {
   .line("=")
   cat("   Welcome to AdarvMaps  (by ADARV)\n")
   cat("   Let's turn your data into an interactive map - no coding needed.\n")
@@ -87,6 +88,11 @@ run_interactive <- function(output_path = "adarvmaps.html") {
 # --- Helpers -----------------------------------------------------------------
 
 .line <- function(char = "=", n = 55L) cat(strrep(char, n), "\n")
+
+# Default map filename, dated DDMMYY -- e.g. "adarvmap_200926.html".
+.default_output <- function() {
+  paste0("adarvmap_", format(Sys.Date(), "%d%m%y"), ".html")
+}
 
 .ask <- function(prompt, default = NULL) {
   suffix <- if (!is.null(default)) paste0(" [", default, "]") else ""
@@ -178,7 +184,7 @@ run_interactive <- function(output_path = "adarvmaps.html") {
   }
 }
 
-.step_output_path <- function(default_path = "adarvmaps.html") {
+.step_output_path <- function(default_path = .default_output()) {
   cat("\n"); .line("-")
   cat("Step 6 -- Where should we save the map?\n")
   cat("   (Press Enter to accept the default)\n")
@@ -257,6 +263,6 @@ run_interactive <- function(output_path = "adarvmaps.html") {
     }
   }
 
-  cat("Which value is the main group? (everything else becomes the other group)\n")
-  .ask_choice("Main group value", values, default_idx)
+  cat("Which value is the main category in this group?\n")
+  .ask_choice("Main category value", values, default_idx)
 }

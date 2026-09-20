@@ -52,7 +52,7 @@ spot_map <- function(data,
   # If called with no arguments at all, drop into the interactive wizard
   # (Python equivalent: `python -m adarvmaps` runs the prompt-based flow.)
   if (missing(data)) {
-    out <- if (is.null(output)) "adarvmaps.html" else output
+    out <- if (is.null(output)) .default_output() else output
     return(invisible(run_interactive(output_path = out)))
   }
 
