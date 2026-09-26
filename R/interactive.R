@@ -41,15 +41,15 @@ run_interactive <- function(output_path = .default_output()) {
   cat("Step 4 -- Which column is your grouping variable?\n")
   cat("   (the column that splits the data into two groups -- e.g.\n")
   cat("    case/control, male/female, dead/alive, positive/negative)\n")
-  cat("   If you don't want any split, pick the first option below.\n")
+  cat("   If your data is all cases (no control group), pick the first option below.\n")
   .line("-")
-  no_outcome_label <- "No grouping -- show all rows the same"
+  no_outcome_label <- "My data is all cases (no control group)"
   cols_with_none <- c(no_outcome_label, cols)
   outcome_choice <- .ask_choice("Your grouping variable", cols_with_none,
                                  1L + .guess(cols, c("outcome", "status",
                                                      "case_control", "class",
                                                      "result")),
-                                 c("All rows shown the same",
+                                 c("All rows treated as cases",
                                    previews))
 
   all_cases <- identical(outcome_choice, no_outcome_label)
@@ -58,7 +58,7 @@ run_interactive <- function(output_path = .default_output()) {
   if (all_cases) {
     outcome_col <- NULL
     case_value <- NULL
-    cat(sprintf("\nNo grouping -- showing all %d rows the same.\n", nrow(df)))
+    cat(sprintf("\nTreating all %d rows as cases (no controls).\n", nrow(df)))
   } else {
     outcome_col <- outcome_choice
     case_value <- .step_pick_case_value(df, outcome_col)

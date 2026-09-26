@@ -81,8 +81,8 @@ adarvmapr asks **five** questions. Each shows its own best guess in **[brackets]
    points later look misplaced, latitude and longitude may be swapped.
 4. **Which column is your grouping variable?** The column that splits the data into two
    groups — case / control, male / female, dead / alive, positive / negative. The map uses
-   the **actual values from your data** as the group names automatically. Choose *No
-   grouping — show all rows the same* if there's no split.
+   the **actual values from your data** as the group names automatically. Choose *My data is
+   all cases (no control group)* if there's no split.
 5. **Which value is the main group?** Tell it which value is the main (highlighted) group;
    everything else becomes the other group, shown with its own name.
 
