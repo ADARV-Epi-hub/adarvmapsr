@@ -1,15 +1,15 @@
-#' Run an interactive wizard to build a AdarvMap
+#' Run an interactive wizard to build a AdarvMaps
 #'
 #' Guides users through choosing a data file, selecting columns, and generating
 #' the map step by step. Designed for users who prefer a guided experience.
 #'
 #' @param output_path Where to save the HTML map. When omitted, defaults to a
-#'   dated file like "adarvmap_200926.html".
+#'   dated file like "adarvmaps_200926.html".
 #' @return Invisible NULL.
 #' @export
 run_interactive <- function(output_path = .default_output()) {
   .line("=")
-  cat("   Welcome to AdarvMap  (by ADARV)\n")
+  cat("   Welcome to AdarvMaps  (by ADARV)\n")
   cat("   Let's turn your data into an interactive map - no coding needed.\n")
   cat("   Just answer a few quick questions below.\n")
   .line("=")
@@ -89,9 +89,9 @@ run_interactive <- function(output_path = .default_output()) {
 
 .line <- function(char = "=", n = 55L) cat(strrep(char, n), "\n")
 
-# Default map filename, dated DDMMYY -- e.g. "adarvmap_200926.html".
+# Default map filename, dated DDMMYY -- e.g. "adarvmaps_200926.html".
 .default_output <- function() {
-  paste0("adarvmap_", format(Sys.Date(), "%d%m%y"), ".html")
+  paste0("adarvmaps_", format(Sys.Date(), "%d%m%y"), ".html")
 }
 
 .ask <- function(prompt, default = NULL) {

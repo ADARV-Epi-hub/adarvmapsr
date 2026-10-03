@@ -2,13 +2,13 @@
 % Please edit documentation in R/interactive.R
 \name{run_interactive}
 \alias{run_interactive}
-\title{Run an interactive wizard to build a AdarvMap}
+\title{Run an interactive wizard to build a AdarvMaps}
 \usage{
 run_interactive(output_path = .default_output())
 }
 \arguments{
 \item{output_path}{Where to save the HTML map. When omitted, defaults to a
-dated file like "adarvmap_200926.html".}
+dated file like "adarvmaps_200926.html".}
 }
 \value{
 Invisible NULL.

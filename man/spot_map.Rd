@@ -2,7 +2,7 @@
 % Please edit documentation in R/spot_map.R
 \name{spot_map}
 \alias{spot_map}
-\alias{adarvmap}
+\alias{adarvmaps}
 \title{Build an interactive epidemiological spot map for India}
 \usage{
 spot_map(
@@ -24,10 +24,10 @@ spot_map(
   output = NULL
 )
 
-adarvmap(...)
+adarvmaps(...)
 }
 \arguments{
-\item{...}{(For \code{adarvmap()}) arguments passed on to \code{spot_map()}.}
+\item{...}{(For \code{adarvmaps()}) arguments passed on to \code{spot_map()}.}
 
 \item{data}{Path to a CSV/Excel/TSV file, or a data.frame.}
 
@@ -72,7 +72,7 @@ A leaflet widget (invisibly if saved to file).
 }
 \description{
 Build an interactive epidemiological spot map for India.
-\code{adarvmap()} is an alias for \code{spot_map()}.
+\code{adarvmaps()} is an alias for \code{spot_map()}.
 }
 \examples{
 \dontrun{

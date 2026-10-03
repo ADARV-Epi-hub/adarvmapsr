@@ -73,7 +73,7 @@ load_data <- function(path) {
 #' @param lat_col Optional explicit latitude column name.
 #' @param lon_col Optional explicit longitude column name.
 #' @return A named list with elements `lat` (column name), `lon` (column
-#'   name), and `df` (the data.frame; may have new `.adarvmapr_auto_lat`/`.adarvmapr_auto_lon`
+#'   name), and `df` (the data.frame; may have new `.adarvmapsr_auto_lat`/`.adarvmapsr_auto_lon`
 #'   columns appended if a combined column was split).
 #' @export
 detect_lat_lon <- function(df, lat_col = NULL, lon_col = NULL) {
@@ -106,9 +106,9 @@ detect_lat_lon <- function(df, lat_col = NULL, lon_col = NULL) {
         lat_s <- ifelse(abs(v1) > abs(v2), v2, v1)
         lon_s <- ifelse(abs(v1) > abs(v2), v1, v2)
       }
-      df[[".adarvmapr_auto_lat"]] <- lat_s
-      df[[".adarvmapr_auto_lon"]] <- lon_s
-      return(list(lat = ".adarvmapr_auto_lat", lon = ".adarvmapr_auto_lon", df = df))
+      df[[".adarvmapsr_auto_lat"]] <- lat_s
+      df[[".adarvmapsr_auto_lon"]] <- lon_s
+      return(list(lat = ".adarvmapsr_auto_lat", lon = ".adarvmapsr_auto_lon", df = df))
     }
   }
 

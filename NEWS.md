@@ -1,4 +1,4 @@
-# adarvmapr 0.1.20
+# adarvmapsr 0.1.20
 
 ## New features
 - Any binary **grouping variable**: the grouping column can now split the data
@@ -11,7 +11,7 @@
   "outcome"), and Step 5 asks which value is the **main group**.
 
 
-# adarvmapr 0.1.19
+# adarvmapsr 0.1.19
 
 ## Changes
 - Returned to the CARTO Positron basemap (sharper look, native to zoom 20),
@@ -21,7 +21,7 @@
   Esri's key-free but softer World Light Gray Canvas.)
 
 
-# adarvmapr 0.1.18
+# adarvmapsr 0.1.18
 
 ## Fixes
 - Switched the basemap from CARTO (Positron) to Esri's "World Light Gray
@@ -32,48 +32,48 @@
   native to zoom 16 and upscaled beyond that, so there are no blank tiles.
 
 
-# adarvmapr 0.1.17
+# adarvmapsr 0.1.17
 
 ## Improvements
-- Simplified the `library(adarvmapr)` startup message to match the Python
+- Simplified the `library(adarvmapsr)` startup message to match the Python
   package: flush-left, no indentation, and clearer wording
-  ("Interactive AdarvMap for India - created by ADARV ... just run
-  `adarvmap()`").
+  ("Interactive AdarvMaps for India - created by ADARV ... just run
+  `adarvmaps()`").
 
 
-# adarvmapr 0.1.16
+# adarvmapsr 0.1.16
 
 ## Improvements
 - Reworded the interactive wizard's step questions in plain language
   (latitude/longitude, case vs control, and which value marks a case).
 
 
-# adarvmapr 0.1.15
+# adarvmapsr 0.1.15
 
 ## Improvements
-- Friendlier, plainer wording throughout: the `library(adarvmapr)` welcome
+- Friendlier, plainer wording throughout: the `library(adarvmapsr)` welcome
   message, the interactive wizard intro and finish message, and hover
   tooltips on every toolbar control (Pin Size, Category, Map Type,
   Labels, Recenter, Download).
 
 
-# adarvmapr 0.1.14
+# adarvmapsr 0.1.14
 
 ## Bug fixes
 - Moved the map legend to the bottom-left so it no longer covers the
   zoom (+/-) buttons.
 
 
-# adarvmapr 0.1.13
+# adarvmapsr 0.1.13
 
 ## New features
-- `adarvmap()` is now available as an alias for `spot_map()`, so both
+- `adarvmaps()` is now available as an alias for `spot_map()`, so both
   spellings work.
 - A friendly startup message is shown when the package is attached
-  (`library(adarvmapr)`), pointing new users to `adarvmap()`.
+  (`library(adarvmapsr)`), pointing new users to `adarvmaps()`.
 
 
-# adarvmapr 0.1.12
+# adarvmapsr 0.1.12
 
 ## New features
 - **OpenStreetMap place-name labels** can now be toggled on/off from the
@@ -94,7 +94,7 @@
   README, and a new `AUTHORS.md`; copyright holder updated to ADARV.
 
 
-# adarvmapr 0.1.11
+# adarvmapsr 0.1.11
 
 ## New features
 - **Cases-only mode** for datasets without a case/control variable
@@ -117,7 +117,7 @@
   the column-type detector.
 - Internal helper columns renamed from leading-underscore names
   (`_outcome_norm`, `_auto_lat`, `_auto_lon`) to namespaced
-  `.adarvmapr_*` names, so users who happen to have a column literally
+  `.adarvmapsr_*` names, so users who happen to have a column literally
   called `_outcome_norm` no longer have their data silently overwritten.
 
 ## New features
@@ -152,6 +152,6 @@
 - Added regression tests for `detect_outcome` validation and
   `detect_lat_lon`'s new return shape.
 
-# adarvmapr 0.1.10
+# adarvmapsr 0.1.10
 
 - Initial release.

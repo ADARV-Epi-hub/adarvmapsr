@@ -1,4 +1,4 @@
-# adarvmapr 0.1.11 — initial CRAN submission
+# adarvmapsr 0.1.11 — initial CRAN submission
 
 ## R CMD check results
 

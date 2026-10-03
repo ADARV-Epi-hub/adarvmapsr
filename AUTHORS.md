@@ -1,6 +1,6 @@
 # Authors
 
-adarvmapr is developed and maintained by the **ADARV** team.
+adarvmapsr is developed and maintained by the **ADARV** team.
 
 | Name | Role |
 |---|---|
