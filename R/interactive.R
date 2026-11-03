@@ -54,7 +54,7 @@ run_interactive <- function(output_path = .default_output()) {
 
   all_cases <- identical(outcome_choice, no_outcome_label)
 
-  # Group labels are taken automatically from the data values (in spot_map()).
+  # Group labels are taken automatically from the data values (in adarvmapsr()).
   if (all_cases) {
     outcome_col <- NULL
     case_value <- NULL
@@ -68,7 +68,7 @@ run_interactive <- function(output_path = .default_output()) {
   # no save-location prompt -- matches the Python wizard's behaviour.
   cat("\nBuilding your map...\n")
   tryCatch({
-    spot_map(df, lat_col = lat_col, lon_col = lon_col,
+    adarvmapsr(df, lat_col = lat_col, lon_col = lon_col,
              outcome_col = outcome_col, case_value = case_value,
              all_cases = all_cases,
              output = output_path)

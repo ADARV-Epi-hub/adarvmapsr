@@ -7,7 +7,7 @@ test_that("all_cases = TRUE builds a map with no outcome column", {
   )
   tmp <- tempfile(fileext = ".html")
   expect_message(
-    spot_map(df, all_cases = TRUE, output = tmp),
+    adarvmapsr(df, all_cases = TRUE, output = tmp),
     "Cases-only mode"
   )
   expect_true(file.exists(tmp))
@@ -21,7 +21,7 @@ test_that("without all_cases, missing outcome column errors clearly", {
     lon   = c(76.9, 77.0)
   )
   expect_error(
-    spot_map(df, output = tempfile(fileext = ".html")),
+    adarvmapsr(df, output = tempfile(fileext = ".html")),
     "Could not find outcome column"
   )
 })
@@ -30,7 +30,7 @@ test_that("empty data frame errors clearly", {
   df <- data.frame(lat = numeric(0), lon = numeric(0),
                    case_control = character(0))
   expect_error(
-    spot_map(df, output = tempfile(fileext = ".html")),
+    adarvmapsr(df, output = tempfile(fileext = ".html")),
     "empty"
   )
 })
@@ -43,7 +43,7 @@ test_that("rows with NA coordinates are dropped with a warning", {
   )
   tmp <- tempfile(fileext = ".html")
   expect_warning(
-    spot_map(df, output = tmp),
+    adarvmapsr(df, output = tmp),
     "missing or out-of-range"
   )
   unlink(tmp)
@@ -56,7 +56,7 @@ test_that("normal case/control data still builds", {
     case_control = c("case", "control", "case")
   )
   tmp <- tempfile(fileext = ".html")
-  spot_map(df, output = tmp)
+  adarvmapsr(df, output = tmp)
   expect_true(file.exists(tmp))
   unlink(tmp)
 })

@@ -22,19 +22,19 @@
 #'   value in the grouping column when there is exactly one (e.g. "Alive"),
 #'   otherwise "Others". Pass a string only to override.
 #' @param output Path to save the HTML file. If NULL, returns the leaflet widget.
-#' @param ... Arguments passed on to `spot_map()` (used by the `adarvmapsr()`
-#'   and `adarvmaps()` aliases).
+#' @param ... Arguments passed on to `adarvmapsr()` (used by the `adarvmaps()`
+#'   alias).
 #' @return A leaflet widget (invisibly if saved to file).
 #' @export
 #' @examples
 #' \dontrun{
-#' spot_map("cases.csv", output = "map.html")
+#' adarvmapsr("cases.csv", output = "map.html")
 #'
 #' # Or with a data.frame
-#' spot_map(my_df, lat_col = "lat", lon_col = "lon",
+#' adarvmapsr(my_df, lat_col = "lat", lon_col = "lon",
 #'          outcome_col = "status", case_value = "case")
 #' }
-spot_map <- function(data,
+adarvmapsr <- function(data,
                      state_shp = NULL,
                      district_shp = NULL,
                      lat_col = NULL,
@@ -402,22 +402,18 @@ spot_map <- function(data,
     padding = 0
   )
 
-  return(.spot_map_finish(m, output))
+  return(.adarvmapsr_finish(m, output))
 }
 
 
-#' @rdname spot_map
+#' @rdname adarvmapsr
 #' @export
-adarvmapsr <- function(...) spot_map(...)
-
-#' @rdname spot_map
-#' @export
-adarvmaps <- function(...) spot_map(...)
+adarvmaps <- function(...) adarvmapsr(...)
 
 
 #' Internal: save the widget or return it
 #' @keywords internal
-.spot_map_finish <- function(m, output) {
+.adarvmapsr_finish <- function(m, output) {
   # 13. Save or return
   if (!is.null(output)) {
     out_path <- normalizePath(output, mustWork = FALSE)

@@ -137,13 +137,13 @@ R >= 4.1. On Linux, `sf` needs `libgdal-dev`, `libproj-dev`, and `libgeos-dev`
 ```r
 library(adarvmapsr)
 
-adarvmapsr()                                    # interactive wizard
-spot_map("my_data.csv", output = "map.html")   # direct call, auto-detected columns
+adarvmapsr()                                       # interactive wizard
+adarvmapsr("my_data.csv", output = "map.html")     # direct call, auto-detected columns
 ```
 
 ### R function reference
 ```r
-spot_map(
+adarvmapsr(
   data,                      # required: a CSV / Excel / TSV path, or a data.frame
   state_shp = NULL,          # custom state boundary (shapefile / GeoPackage)
   district_shp = NULL,       # custom district boundary
@@ -162,7 +162,7 @@ spot_map(
   output = NULL              # path to save the HTML (returns the widget if NULL)
 )
 ```
-`adarvmapsr()` (and `adarvmaps()`) are friendly aliases for `spot_map()`. Run `?spot_map` in R for the full help.
+`adarvmaps()` is a friendly alias for `adarvmapsr()`. Run `?adarvmapsr` in R for the full help.
 
 ### Common arguments
 | Argument | Description |

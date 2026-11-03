@@ -12,20 +12,25 @@
   by sex, vital status, test result, etc. — not just case/control. The map's
   legend, pop-ups, and category menu automatically use the **actual values from
   your data** (e.g. "Dead" / "Alive") as the group names, so the wizard no
-  longer asks you to name the groups. `spot_map()` still accepts optional
+  longer asks you to name the groups. `adarvmapsr()` still accepts optional
   `case_label` / `control_label` to override the names.
 - The interactive wizard now calls this the "grouping variable" (not
   "outcome"), and Step 5 asks which value is the **main group**.
 
+## Breaking changes
+- The main function has been renamed from `spot_map()` to `adarvmapsr()`, to
+  match the package name. **`spot_map()` is no longer available** — update any
+  `spot_map(...)` calls to `adarvmapsr(...)` (or the `adarvmaps()` alias).
+
 ## Changes
-- `adarvmapsr()` now launches the interactive wizard, so the command matches
-  the package name: `library(adarvmapsr); adarvmapsr()`. `adarvmaps()` and
-  `spot_map()` still work as aliases, and the startup message now points to
-  `adarvmapsr()`.
+- `adarvmapsr()` is the function to call: `library(adarvmapsr); adarvmapsr()`
+  launches the interactive wizard, and `adarvmapsr("data.csv")` builds a map
+  directly. `adarvmaps()` remains as a shorter alias, and the startup message
+  now points to `adarvmapsr()`.
 - The interactive wizard no longer asks where to save the map. It writes
   straight to the dated default file (e.g. `adarvmaps_200926.html`) in the
   working directory, exactly like the Python package, so both wizards now ask
-  the same five questions. Pass `output =` to `spot_map()` to choose a
+  the same five questions. Pass `output =` to `adarvmapsr()` to choose a
   different path.
 
 
