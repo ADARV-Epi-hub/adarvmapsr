@@ -15,7 +15,10 @@ Description: Build interactive spot maps for epidemiological case-control
     data in India. Supports automatic detection of latitude, longitude, and
     outcome columns, spatial joining with bundled state and district
     boundaries, and produces interactive 'HTML' maps with dot-density and
-    spot-pin display modes.
+    spot-pin display modes. The bundled India state and district boundaries
+    are sourced from the Survey of India and used under the Government Open
+    Data License - India (GODL-India,
+    <https://data.gov.in/government-open-data-license-india>).
 License: MIT + file LICENSE
 URL: https://github.com/ADARV-Epi-hub/adarvmapsr
 BugReports: https://github.com/ADARV-Epi-hub/adarvmapsr/issues

@@ -160,38 +160,39 @@ spot_map <- function(data,
 
   # 7. Build leaflet map
   # (setView is omitted because fitBounds below overrides it anyway)
-  # CARTO now REQUIRES an API key for its basemap tiles; without one, tiles are
-  # stamped with a repeating "API KEY REQUIRED" watermark. Paste the ADARV
-  # CARTO key below before building/publishing (free key from
-  # https://carto.com/basemaps/apikey). It is embedded in every generated map,
-  # so treat it as public and, where possible, restrict it to your domain(s).
-  carto_key <- "cb1_2lzb_1_0d47abf8d1b6b128f0de7118"
-  carto_attr <- paste0(
-    "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> ",
-    "contributors &copy; <a href=\"https://carto.com/attributions\">CARTO</a>"
+  # Basemap: Esri "World Light Gray Canvas" - a clean light-gray base with a
+  # separate, transparent labels-only layer, so place names can be toggled.
+  # These tiles are served without an API key (no credentials are bundled in
+  # the package). Tiles are native to zoom 16; Leaflet upscales beyond that,
+  # so there are no blank tiles.
+  esri_attr <- paste0(
+    "Tiles &copy; <a href=\"https://www.esri.com/\">Esri</a> &mdash; Esri, ",
+    "HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community"
+  )
+  esri_base <- paste0(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/",
+    "Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+  )
+  esri_labels <- paste0(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/",
+    "Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}"
   )
   m <- leaflet::leaflet(
     width = "100%", height = "100%",
     options = leaflet::leafletOptions(zoomSnap = 0.1, zoomDelta = 0.1)
   ) |>
-    # No-labels CARTO Positron base so place labels can be toggled on/off.
+    # No-labels light-gray base so place labels can be toggled on/off.
     leaflet::addTiles(
-      urlTemplate = paste0(
-        "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png?key=",
-        carto_key
-      ),
-      attribution = carto_attr,
-      options = leaflet::tileOptions(subdomains = "abcd", maxZoom = 20)
+      urlTemplate = esri_base,
+      attribution = esri_attr,
+      options = leaflet::tileOptions(maxNativeZoom = 16, maxZoom = 18)
     ) |>
-    # Toggleable place-name labels (rendered by CARTO from OpenStreetMap).
+    # Toggleable place-name labels (Esri World Light Gray Reference layer).
     leaflet::addTiles(
-      urlTemplate = paste0(
-        "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png?key=",
-        carto_key
-      ),
-      attribution = carto_attr,
+      urlTemplate = esri_labels,
+      attribution = esri_attr,
       group = "Place Labels",
-      options = leaflet::tileOptions(subdomains = "abcd", maxZoom = 20)
+      options = leaflet::tileOptions(maxNativeZoom = 16, maxZoom = 18)
     )
 
   # 8. Boundary layers (using addPolygons with sf objects directly)

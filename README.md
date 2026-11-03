@@ -217,6 +217,16 @@ adarvmapsr is developed by the **ADARV** team:
 7. Balaji S
 8. Deepana R
 
+## Data source
+
+The bundled India state and district boundaries are from the **Survey of India**,
+used under the **Government Open Data License – India
+([GODL-India](https://data.gov.in/government-open-data-license-india))**, which
+permits redistribution with attribution. The geometries are simplified for
+visual mapping and are not intended for precise measurement or official boundary
+determination.
+
 ## License
 
-MIT © ADARV
+The `adarvmapsr` package code is released under the MIT License — © ADARV.
+(The bundled boundary data is under GODL-India; see **Data source** above.)

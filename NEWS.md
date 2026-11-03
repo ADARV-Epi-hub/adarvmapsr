@@ -1,5 +1,12 @@
 # adarvmapsr 0.1.20
 
+## CRAN preparation
+- Basemap switched to Esri's key-free "World Light Gray Canvas". No API key is
+  bundled in the package; place-name labels remain toggleable.
+- Documented the bundled boundary data: it is from the Survey of India, used
+  under the Government Open Data License - India (GODL-India), with attribution
+  in the README, DESCRIPTION, and `inst/extdata/DATA_SOURCE.md`.
+
 ## New features
 - Any binary **grouping variable**: the grouping column can now split the data
   by sex, vital status, test result, etc. — not just case/control. The map's
