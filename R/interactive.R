@@ -64,10 +64,8 @@ run_interactive <- function(output_path = .default_output()) {
     case_value <- .step_pick_case_value(df, outcome_col)
   }
 
-  # Step 6 -- pick output path (allow user to override the default)
-  output_path <- .step_output_path(output_path)
-
-  # Step 7 -- build
+  # Build the map, saving to the dated default (or the output_path given) with
+  # no save-location prompt -- matches the Python wizard's behaviour.
   cat("\nBuilding your map...\n")
   tryCatch({
     spot_map(df, lat_col = lat_col, lon_col = lon_col,
@@ -191,49 +189,6 @@ run_interactive <- function(output_path = .default_output()) {
     })
   }
 }
-
-.step_output_path <- function(default_path = .default_output()) {
-  cat("\n"); .line("-")
-  cat("Step 6 -- Where should we save the map?\n")
-  cat("   (Press Enter to accept the default)\n")
-  .line("-")
-  repeat {
-    path <- .ask("Save HTML to", default = default_path)
-    if (!grepl("\\.html?$", tolower(path))) {
-      path <- paste0(path, ".html")
-      cat(sprintf("Added .html -> %s\n", path))
-    }
-    parent_dir <- dirname(path)
-    if (nzchar(parent_dir) && parent_dir != "." && !dir.exists(parent_dir)) {
-      create <- .ask(sprintf("Folder '%s' doesn't exist. Create it? (y/n)",
-                              parent_dir), default = "y")
-      if (tolower(substr(create, 1L, 1L)) == "y") {
-        ok <- tryCatch({
-          dir.create(parent_dir, recursive = TRUE, showWarnings = FALSE)
-          TRUE
-        }, error = function(e) {
-          cat(sprintf("Could not create folder: %s\n", conditionMessage(e)))
-          FALSE
-        })
-        if (!ok) next
-      } else {
-        next
-      }
-    }
-    # Test write permission with a touch
-    test_ok <- tryCatch({
-      con <- file(path, open = "a")
-      close(con)
-      if (file.exists(path) && file.info(path)$size == 0) file.remove(path)
-      TRUE
-    }, error = function(e) {
-      cat(sprintf("No write permission for: %s\n", path))
-      FALSE
-    })
-    if (test_ok) return(path)
-  }
-}
-
 
 .step_pick_case_value <- function(df, outcome_col) {
   norm <- trimws(as.character(df[[outcome_col]]))

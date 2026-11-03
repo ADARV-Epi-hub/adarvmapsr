@@ -6,7 +6,7 @@ Authors@R: c(
            role = c("aut", "cre")),
     person("Sharan", "Murali", role = "aut"),
     person("Manikandan", "K", role = "ctb"),
-    person("Shanmuga", "Sundharam", role = "ctb"),
+    person("Shanmuga Sundharam", "P", role = "ctb"),
     person("Yogita", "Chaudhary", role = "ctb"),
     person("Barath", "U", role = "ctb"),
     person("Balaji", "S", role = "ctb"),

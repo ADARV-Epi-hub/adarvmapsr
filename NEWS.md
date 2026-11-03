@@ -17,6 +17,13 @@
 - The interactive wizard now calls this the "grouping variable" (not
   "outcome"), and Step 5 asks which value is the **main group**.
 
+## Changes
+- The interactive wizard no longer asks where to save the map. It writes
+  straight to the dated default file (e.g. `adarvmaps_200926.html`) in the
+  working directory, exactly like the Python package, so both wizards now ask
+  the same five questions. Pass `output =` to `spot_map()` to choose a
+  different path.
+
 
 # adarvmapsr 0.1.19
 
