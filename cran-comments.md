@@ -2,11 +2,12 @@
 
 ## R CMD check results
 
-* `R CMD check --as-cran` ran with **0 errors, 0 warnings** on:
-  * Local: R 4.x, Windows 11 (x86_64)
-* One NOTE is expected: "installed size is large" — the package bundles
-  simplified India boundary geometries (~2.8 MB, see below) so that maps work
-  with no external downloads. The total package stays under the 5 MB limit.
+* `R CMD check --as-cran` ran with **0 errors, 0 warnings, 0 notes** on:
+  * Local: R 4.6.2, Windows 11 (x86_64)
+* The package bundles simplified India boundary geometries (~2.8 MB, see below)
+  so that maps work with no external downloads; the total stays well under the
+  5 MB limit. If any check platform reports an "installed size is large" NOTE,
+  this bundled data is the reason.
 
 ## Cross-platform checks
 

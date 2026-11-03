@@ -2,7 +2,7 @@
 % Please edit documentation in R/sidebar.R
 \name{build_sidebar_html}
 \alias{build_sidebar_html}
-\title{Build the sidebar HTML/CSS/JS for the AdarvMaps}
+\title{Build the top toolbar HTML/CSS for the AdarvMaps (ADARV attached-bar layout)}
 \usage{
 build_sidebar_html(
   n_cases,
@@ -10,10 +10,12 @@ build_sidebar_html(
   mode,
   cluster_color,
   case_color,
-  control_color
+  control_color,
+  case_label = "Case",
+  control_label = "Control"
 )
 }
 \description{
-Build the sidebar HTML/CSS/JS for the AdarvMaps
+Build the top toolbar HTML/CSS for the AdarvMaps (ADARV attached-bar layout)
 }
 \keyword{internal}

@@ -27,8 +27,6 @@ spot_map(
 adarvmaps(...)
 }
 \arguments{
-\item{...}{(For \code{adarvmaps()}) arguments passed on to \code{spot_map()}.}
-
 \item{data}{Path to a CSV/Excel/TSV file, or a data.frame.}
 
 \item{state_shp}{Optional custom state boundary file path.}
@@ -66,13 +64,15 @@ value in the grouping column when there is exactly one (e.g. "Alive"),
 otherwise "Others". Pass a string only to override.}
 
 \item{output}{Path to save the HTML file. If NULL, returns the leaflet widget.}
+
+\item{...}{Arguments passed on to \code{spot_map()} (used by the \code{adarvmaps()}
+alias).}
 }
 \value{
 A leaflet widget (invisibly if saved to file).
 }
 \description{
-Build an interactive epidemiological spot map for India.
-\code{adarvmaps()} is an alias for \code{spot_map()}.
+Build an interactive epidemiological spot map for India
 }
 \examples{
 \dontrun{

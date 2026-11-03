@@ -2,11 +2,17 @@
 % Please edit documentation in R/sidebar.R
 \name{build_sidebar_js}
 \alias{build_sidebar_js}
-\title{Build the sidebar JavaScript for layer toggling}
+\title{Build the toolbar JavaScript for layer toggling}
 \usage{
-build_sidebar_js(cluster_color, case_color, control_color)
+build_sidebar_js(
+  cluster_color,
+  case_color,
+  control_color,
+  case_label = "Case",
+  control_label = "Control"
+)
 }
 \description{
-Build the sidebar JavaScript for layer toggling
+Build the toolbar JavaScript for layer toggling
 }
 \keyword{internal}

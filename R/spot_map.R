@@ -22,6 +22,8 @@
 #'   value in the grouping column when there is exactly one (e.g. "Alive"),
 #'   otherwise "Others". Pass a string only to override.
 #' @param output Path to save the HTML file. If NULL, returns the leaflet widget.
+#' @param ... Arguments passed on to `spot_map()` (used by the `adarvmaps()`
+#'   alias).
 #' @return A leaflet widget (invisibly if saved to file).
 #' @export
 #' @examples
