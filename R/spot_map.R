@@ -22,8 +22,8 @@
 #'   value in the grouping column when there is exactly one (e.g. "Alive"),
 #'   otherwise "Others". Pass a string only to override.
 #' @param output Path to save the HTML file. If NULL, returns the leaflet widget.
-#' @param ... Arguments passed on to `spot_map()` (used by the `adarvmaps()`
-#'   alias).
+#' @param ... Arguments passed on to `spot_map()` (used by the `adarvmapsr()`
+#'   and `adarvmaps()` aliases).
 #' @return A leaflet widget (invisibly if saved to file).
 #' @export
 #' @examples
@@ -405,6 +405,10 @@ spot_map <- function(data,
   return(.spot_map_finish(m, output))
 }
 
+
+#' @rdname spot_map
+#' @export
+adarvmapsr <- function(...) spot_map(...)
 
 #' @rdname spot_map
 #' @export

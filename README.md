@@ -63,7 +63,7 @@ Paste these three lines into the Console and press **Enter**:
 ```r
 install.packages("remotes")
 remotes::install_github("ADARV-Epi-hub/adarvmapsr")
-library(adarvmapsr); adarvmaps()
+library(adarvmapsr); adarvmapsr()
 ```
 The first two lines install AdarvMaps (a couple of minutes the first time — that's normal);
 the third line starts the guided wizard.
@@ -137,7 +137,7 @@ R >= 4.1. On Linux, `sf` needs `libgdal-dev`, `libproj-dev`, and `libgeos-dev`
 ```r
 library(adarvmapsr)
 
-adarvmaps()                                     # interactive wizard
+adarvmapsr()                                    # interactive wizard
 spot_map("my_data.csv", output = "map.html")   # direct call, auto-detected columns
 ```
 
@@ -162,7 +162,7 @@ spot_map(
   output = NULL              # path to save the HTML (returns the widget if NULL)
 )
 ```
-`adarvmaps()` is a friendly alias for `spot_map()`. Run `?spot_map` in R for the full help.
+`adarvmapsr()` (and `adarvmaps()`) are friendly aliases for `spot_map()`. Run `?spot_map` in R for the full help.
 
 ### Common arguments
 | Argument | Description |

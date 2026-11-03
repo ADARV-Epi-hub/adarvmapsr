@@ -2,6 +2,7 @@
 % Please edit documentation in R/spot_map.R
 \name{spot_map}
 \alias{spot_map}
+\alias{adarvmapsr}
 \alias{adarvmaps}
 \title{Build an interactive epidemiological spot map for India}
 \usage{
@@ -23,6 +24,8 @@ spot_map(
   control_label = NULL,
   output = NULL
 )
+
+adarvmapsr(...)
 
 adarvmaps(...)
 }
@@ -65,8 +68,8 @@ otherwise "Others". Pass a string only to override.}
 
 \item{output}{Path to save the HTML file. If NULL, returns the leaflet widget.}
 
-\item{...}{Arguments passed on to \code{spot_map()} (used by the \code{adarvmaps()}
-alias).}
+\item{...}{Arguments passed on to \code{spot_map()} (used by the \code{adarvmapsr()}
+and \code{adarvmaps()} aliases).}
 }
 \value{
 A leaflet widget (invisibly if saved to file).

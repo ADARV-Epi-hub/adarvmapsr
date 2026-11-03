@@ -18,6 +18,10 @@
   "outcome"), and Step 5 asks which value is the **main group**.
 
 ## Changes
+- `adarvmapsr()` now launches the interactive wizard, so the command matches
+  the package name: `library(adarvmapsr); adarvmapsr()`. `adarvmaps()` and
+  `spot_map()` still work as aliases, and the startup message now points to
+  `adarvmapsr()`.
 - The interactive wizard no longer asks where to save the map. It writes
   straight to the dated default file (e.g. `adarvmaps_200926.html`) in the
   working directory, exactly like the Python package, so both wizards now ask

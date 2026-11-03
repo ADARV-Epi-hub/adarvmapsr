@@ -9,7 +9,7 @@
     "\n",
     "No code required! To build your map, just run:\n",
     "\n",
-    "adarvmaps()\n",
+    "adarvmapsr()\n",
     "\n",
     "You'll be asked to choose your data file, then your map appears."
   )
