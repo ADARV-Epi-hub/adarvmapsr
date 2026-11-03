@@ -7,4 +7,6 @@ inst/doc
 
 # Accidental saveWidget() output (selfcontained = FALSE creates these)
 adarvmaps.html
+# Maps generated while testing (the wizard's dated default output)
+adarvmaps_*.html
 *_files/

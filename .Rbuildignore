@@ -7,3 +7,5 @@
 ^\.gitignore$
 ^cran-comments\.md$
 ^AUTHORS\.md$
+^adarvmaps.*\.html$
+^.*_files$
