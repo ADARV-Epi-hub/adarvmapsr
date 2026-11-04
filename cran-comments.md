@@ -11,9 +11,26 @@
 
 ## Cross-platform checks
 
-* Win-builder (R-devel, R-release): pending — running before submission
-* R-hub (Linux, Windows, macOS): pending — running before submission
-* mac-builder: pending — running before submission
+* Win-builder (R-devel): **0 errors, 0 warnings, 1 NOTE** — the standard
+  "checking CRAN incoming feasibility" note; see "Notes raised by the checks"
+  below. (R Under development, 2026-11-03 r90835 ucrt.)
+* Win-builder (R-release), mac-builder: run before submission.
+
+## Notes raised by the checks
+
+The single NOTE comes from "checking CRAN incoming feasibility" and has three
+parts, all expected or benign:
+
+* **New submission.** This is the first release of the package to CRAN.
+* **Possibly misspelled words in DESCRIPTION: GODL.** "GODL" is an acronym for
+  the *Government Open Data License – India*, the licence under which the
+  bundled boundary data is distributed. It is spelled correctly (also added to
+  `inst/WORDLIST`).
+* **Possibly invalid URL <https://data.gov.in/government-open-data-license-india>.**
+  This is the official, canonical page for the GODL-India licence. The check
+  reported a connection timeout because the data.gov.in server was temporarily
+  unreachable from the check machine; the URL is correct and resolves normally
+  in a browser.
 
 ## Reverse dependencies
 
